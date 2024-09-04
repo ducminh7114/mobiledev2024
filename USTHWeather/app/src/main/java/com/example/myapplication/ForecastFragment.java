@@ -2,12 +2,15 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 
-import android.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ForecastFragment#newInstance} factory method to
@@ -55,12 +58,33 @@ public class ForecastFragment extends Fragment {
         }
     }
 
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_forecast, container, false);
-        v.setBackgroundColor(0x2000FFFF);
-        return v;
+
+        LinearLayout layout = new LinearLayout(getActivity());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setBackgroundColor(0xFF00FF00);
+
+        TextView textView = new TextView(getActivity());
+        textView.setText("Thursday");
+        textView.setTextSize(25);
+        textView.setPadding(25, 25, 25, 25);
+
+        ImageView imageView = new ImageView(getActivity());
+        imageView.setImageResource(R.drawable.baseline_cloud_24); // Replace with your actual weather icon resource
+        imageView.setPadding(25, 25, 55, 25);
+
+
+        layout.addView(textView);
+        layout.addView(imageView);
+
+
+        return layout;
     }
+
+
+
 }
