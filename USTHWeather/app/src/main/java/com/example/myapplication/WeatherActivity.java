@@ -16,11 +16,19 @@ public class WeatherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
 
-        ForecastFragment firstFragment = new ForecastFragment();
+        // Create a new Fragment to be placed in the activity
+        WeatherFragment weatherFragment = new WeatherFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ((FragmentTransaction) fragmentTransaction).add(R.id.weather_container, weatherFragment);
+        fragmentTransaction.commit();
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.container, firstFragment);
-        transaction.commit();
+        // Add the forecast fragment
+        ForecastFragment forecastFragment = new ForecastFragment();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.forecast_container, forecastFragment);
+        fragmentTransaction.commit();
+
         Log.i(TAG, "onCreate: Activity created");
     }
 
